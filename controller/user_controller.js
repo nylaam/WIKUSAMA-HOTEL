@@ -91,6 +91,27 @@ exports.addUser = (request, response) => {
     if (!request.file) {
       return response.json({ message: `Nothing file to Upload` });
     }
+
+    //validasi format email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(request.body.email)) {
+        return response.json({ 
+          message: `Invalid email address` 
+        });
+      }
+      
+      //email sudah terpakai
+      // let email = await modelUser.findOne({
+      //   where: {
+      //     email: request.body.email 
+      //     }
+      // })
+      //   if (email !=null) {
+      //   return response.json({ 
+      //     message: `Email has been used` 
+      //   })
+      // }
+
   let newUser = {
     nama_user: request.body.nama_user,
     foto: request.file.filename,

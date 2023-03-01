@@ -30,6 +30,16 @@ exports.findKamar = async (request, response) => {
   });
 };
 exports.addKamar = async (request, response) => {
+  let kamar_nomor = await kamarModel.findOne({
+    where: {
+      nomor_kamar: request.body.nomor_kamar
+    }
+  })
+  if (kamar_nomor !=null){
+    return response.json({
+      message: `꧋ꦤꦺꦴꦩꦺꦴꦂꦄꦼꦮꦼꦱ꧀ꦏꦼꦒꦮꦺ`
+    })
+  }
   let newKamar = {
     nomor_kamar: request.body.nomor_kamar,
     tipeKamarId: request.body.tipeKamarId,
