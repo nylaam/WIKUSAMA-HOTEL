@@ -26,9 +26,9 @@ exports.getAllType = async (request, response) => {
 
 //mendaptkan salah satu data dalam tabel (where clause)
 exports.findType = async (request, response) => {
-  let name = request.body.nama_tipe_kamar;
+  let name = request.body.nama;
 
-  let tipe = await tipeModel.findOne({
+  let tipe = await tipeModel.findAll({
     where: {
       [Op.and]: [{ nama_tipe_kamar: { [Op.substring]: name } }],
     },

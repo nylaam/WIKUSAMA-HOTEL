@@ -24,7 +24,7 @@ exports.getAllKamar = async (request, response) => {
 };
 
 exports.findKamar = async (request, response) => {
-  let keyword = request.body.keyword;
+  let keyword = request.body.nomor_kamar;
   let kamars = await kamarModel.findAll({ 
     where: {
       [Op.or]: [
@@ -36,15 +36,15 @@ exports.findKamar = async (request, response) => {
   return response.json({
     success: true,
     data: kamars,
-    message: "All rooms have been loaded",
+    message: `All rooms have been loaded ${keyword}`,
   });
 };
 
 exports.addKamar = async (request, response) => {
-  let nama_tipe_kamar = request.body.nama_tipe_kamar;
+  let nama_tipe_kamar = request.body.tipeKamarId;
   let tipeId = await tipeKamarModel.findOne({
     where: {
-      [Op.and]: [{ nama_tipe_kamar: { [Op.substring]: nama_tipe_kamar } }],
+      [Op.and]: [{ id: { [Op.substring]: nama_tipe_kamar } }],
     },
   });
   console.log(tipeId);

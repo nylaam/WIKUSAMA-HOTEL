@@ -15,7 +15,7 @@ const pemesananController = require("../controller/pemesanan.controller")
 const auth = require(`../auth/auth`)
 
 app.get("/getAll", auth.authVerify, pemesananController.getAllPemesanan)
-app.get("/find",auth.authVerify, pemesananController.find)
+app.post("/find",auth.authVerify, pemesananController.find)
 app.post("/add",auth.authVerify, pemesananController.addPemesanan)
 app.delete("/:id", auth.authVerify, pemesananController.deletePemesanan)
 app.put("/:id", auth.authVerify, pemesananController.updatePemesanan)
